@@ -144,15 +144,15 @@ describe("Verifying a Slack request", () => {
       }
     });
 
-    expect(async () => {}).toThrowError();
-    try {
-      await server.inject(slackRequest);
-    } catch (e) {
-      // https://github.com/hapijs/hapi/issues/3736
-      expect(e).toBeDefined();
-    }
+    // https://github.com/hapijs/hapi/issues/3736
     // we actually want this code but it throws an error for some reason with server.inject
     // expect(res.statusCode).toBe(401);
     // expect(res.result.message).toBe('Payload failed authentication');
+
+    try {
+      await server.inject(slackRequest);
+    } catch (e) {
+      expect(e).toBeDefined();
+    }
   });
 });
