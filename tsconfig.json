@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
+    "outDir": "build",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "lib": ["es2015"]
+  },
+  "include": [
+    "lib/**/*"
+  ],
+  "exclude": [
+    "node_modules/",
+    "lib/**/*.test.ts"
+  ]
+}
