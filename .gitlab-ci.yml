@@ -47,9 +47,9 @@ run_tests:
     - npm install
   script:
     - npm test
-  coverage: 'All files[^|]*\|[^|]*\s+([\d\.]+)'
+  coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
 
-build_source
+build_source:
   stage: build
   before_script:
     - npm install
