@@ -50,6 +50,12 @@
   "dependencies": {
     "boom": "^7.2.0"
   },
+  "prettier": {
+    "parser": "typescript",
+    "printWidth": 100,
+    "singleQuote": true,
+    "semi": true
+  },
   "jest": {
     "transform": {
       "^.+\\.ts?$": "ts-jest"
