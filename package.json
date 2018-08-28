@@ -1,6 +1,6 @@
 {
   "name": "hapi-slack-signature",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Hapi authentication schema to authenticate requests from the Slack Event API",
   "main": "build/index.js",
   "scripts": {
