@@ -11,6 +11,7 @@ stages:
   - stylecheck
   - test
   - build
+  - publish
 
 cache:
   key: "$CI_BUILD_REF_SLUG"
@@ -55,3 +56,14 @@ build_source:
     - npm install
   script:
     - npm run build
+  artifacts:
+    paths:
+      - build/
+
+publish_npm:
+  stage: publish
+  only:
+    - tags
+  script:
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+    - npm publish
