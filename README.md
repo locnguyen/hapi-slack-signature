@@ -2,7 +2,7 @@
 
 [![pipeline status](https://gitlab.com/lochnguyen/hapi-slack-signature/badges/master/pipeline.svg)](https://gitlab.com/lochnguyen/hapi-slack-signature/commits/master) [![coverage report](https://gitlab.com/lochnguyen/hapi-slack-signature/badges/master/coverage.svg)](https://gitlab.com/lochnguyen/hapi-slack-signature/commits/master)
 
-This HapiJS authentication scheme verifieds requests from the Slack Event API. It has a peer dependency on HapiJS `>=17.x.x`.
+This HapiJS authentication scheme verifies requests from the Slack Event API. It has a peer dependency on HapiJS `>=17.x.x`.
 
 To learn more about request verification, see the Slack [documentation](https://api.slack.com/docs/verifying-requests-from-slack).
 
@@ -43,7 +43,7 @@ server.route({
 
 ## Test
 
-To run the tests and get coverage, run `npm install` and then `npm test`
+To run the tests and get coverage, run `npm install` and then `npm test`.
 
 ## Build
 
