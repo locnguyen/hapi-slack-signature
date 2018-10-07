@@ -11,9 +11,9 @@ const getPayload = token =>
   `token=${token}&team_id=T1DC2JH3J&team_domain=testteamnow&channel_id=G8PSS9T3V&channel_name=foobar&user_id=U2CERLKJA&user_name=roadrunner&command=%2Fwebhook-collect&text=&response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FT1DC2JH3J%2F397700885554%2F96rGlfmibIGlgcZRskXaIFfN&trigger_id=398738663015.47445629121.803a0bc887a14d10d2c447fce8b6703c`;
 
 describe('Verifying a Slack request', () => {
-  it('A 200 success is received when the Slack timestamp and server timestamp are less than 5s', async () => {
+  it('A 200 success is received when the Slack timestamp and server timestamp are less than 5 minutes', async () => {
     const payload = getPayload(positiveTestCaseToken);
-    const timestamp = new Date().getTime() - 1000;
+    const timestamp = Math.floor(Date.now() / 1000 - 60 * 1); // Slack timestamp (seconds)
     const basestring = `${version}:${timestamp}:${payload}`;
     const hmac = crypto.createHmac('sha256', secret);
     const signature: string = hmac.update(basestring).digest('hex');
@@ -56,9 +56,9 @@ describe('Verifying a Slack request', () => {
     expect(res.statusCode).toBe(200);
   });
 
-  it('A 401 error is received if the Slack timestamp and server timestamp differ more than 5 seconds', async () => {
+  it('A 401 error is received if the Slack timestamp and server timestamp differ more than 5 minutes', async () => {
     const payload = getPayload(positiveTestCaseToken);
-    const timestamp = new Date().getTime() - 1000 * 60 * 5;
+    const timestamp = Math.floor(Date.now() / 1000 - 60 * 10); // Slack timestamp (seconds)
     const basestring = `${version}:${timestamp}:${payload}`;
     const hmac = crypto.createHmac('sha256', secret);
     const signature: string = hmac.update(basestring).digest('hex');
@@ -104,7 +104,7 @@ describe('Verifying a Slack request', () => {
 
   it('A 401 error is received if the Slack request signature is invalid', async () => {
     const payload = getPayload(negativeTestCaseToken);
-    const timestamp = new Date().getTime();
+    const timestamp = Math.floor(Date.now() / 1000); // Slack timestamp (seconds)
     const basestring = `${version}:${timestamp}:${payload}`;
     const hmac = crypto.createHmac('sha256', secret);
     const signature: string = hmac.update(basestring).digest('hex');
