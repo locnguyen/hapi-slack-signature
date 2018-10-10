@@ -113,7 +113,7 @@ describe('Verifying a Slack request', () => {
       url: '/slack',
       headers: {
         'x-slack-request-timestamp': timestamp,
-        'x-slack-signature': signature,
+        'x-slack-signature': `v1=${signature}`,
         'content-type': 'application/x-www-form-urlencoded'
       },
       payload: Buffer.from(getPayload(positiveTestCaseToken))
@@ -144,10 +144,9 @@ describe('Verifying a Slack request', () => {
       }
     });
 
-    // https://github.com/hapijs/hapi/issues/3736
-    // we actually want this code but it throws an error for some reason with server.inject
-    // expect(res.statusCode).toBe(401);
-    // expect(res.result.message).toBe('Payload failed authentication');
+    const res = await server.inject(slackRequest);
+    expect(res.statusCode).toBe(401);
+    expect(res.result.message).toBe('Payload failed authentication');
 
     try {
       await server.inject(slackRequest);

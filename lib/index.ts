@@ -38,8 +38,7 @@ const HapiSlackSignature = (server, options): Hapi.ServerAuthSchemeObject => ({
     if (crypto.timingSafeEqual(Buffer.from(signature, 'hex'), Buffer.from(hash, 'hex'))) {
       return h.continue;
     } else {
-      h.unauthenticated(Boom.unauthorized('Payload failed authentication'));
-      return null;
+      return Boom.unauthorized('Payload failed authentication');
     }
   }
 });
