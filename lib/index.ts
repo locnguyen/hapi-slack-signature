@@ -3,7 +3,7 @@ import * as Boom from 'boom';
 import * as Hapi from 'hapi';
 
 const isOldTimestamp = (timestamp: number): boolean =>
-  Math.abs(new Date().getTime() - timestamp) > 1000 * 60 * 5;
+  Math.abs(Date.now() / 1000 - timestamp) > 60 * 5;
 
 const getSlackHeaders = (headers: Hapi.Util.Dictionary<string>) => ({
   slackTimestamp: headers['x-slack-request-timestamp'],
